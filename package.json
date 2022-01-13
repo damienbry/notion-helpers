@@ -1,0 +1,11 @@
+{
+  "name": "notion-helpers",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:damienbry/notion-helpers.git",
+  "author": "damienbry <tech@damienbry.io>",
+  "license": "MIT",
+  "dependencies": {
+    "@notionhq/client": "^0.4.12"
+  }
+}
