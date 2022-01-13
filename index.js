@@ -52,11 +52,8 @@ module.exports = {
     });
   },
   getValue: (property) => {
-    if (SIMPLE_PROPERTY_VALUES.includes(property.type)) {
-      return property[property.type];
-    }
-
-    return COMPLEX_PROPERTY_VALUES[property.type](property);
+    const complexProp = COMPLEX_PROPERTY_VALUES[property.type]
+    return complexProp ? complexProp(property) : property[property.type];
   }
 };
 
