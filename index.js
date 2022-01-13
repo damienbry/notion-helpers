@@ -11,7 +11,7 @@ const COMPLEX_PROPERTY_VALUES = {
   multi_select: (p) => p.multi_select.map(ms => ms.name).join(','),
   files: (p) => p.files.map(f => f[f.type].url).join(','),
   select: (p) => p.select.name,
-  formula: (p) => (COMPLEX_PROPERTY_VALUES[p.type] || (pp) => pp[pp.type])(p)
+  formula: (p) => (COMPLEX_PROPERTY_VALUES[p.type] || ((pp) => pp[pp.type]))(p)
 };
 
 module.exports = {

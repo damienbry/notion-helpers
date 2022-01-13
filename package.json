@@ -5,6 +5,9 @@
   "repository": "git@github.com:damienbry/notion-helpers.git",
   "author": "damienbry <tech@damienbry.io>",
   "license": "MIT",
+  "scripts": {
+    "refresh": "sh ./refresh.sh"
+  },
   "dependencies": {
     "@notionhq/client": "^0.4.12"
   }
