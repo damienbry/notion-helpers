@@ -41,9 +41,7 @@ module.exports = {
       parent: {
         database_id: databaseId
       },
-      cover: page.cover,
-      icon: page.icon,
-      properties: renamedProperties,
+      ...page
     };
     const response = await notion.pages.create(newPage);
   },
