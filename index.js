@@ -36,7 +36,7 @@ module.exports = {
 
     return pages;
   },
-  insertPage: async (pages, databaseId) => {
+  insertPage: async (page, databaseId) => {
     const newPage = {
       parent: {
         database_id: databaseId
