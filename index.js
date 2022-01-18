@@ -10,7 +10,7 @@ const COMPLEX_PROPERTY_VALUES = {
   rich_text: (p) => p.rich_text.map(rt => rt.plain_text).join(''),
   multi_select: (p) => p.multi_select.map(ms => ms.name).join(','),
   files: (p) => p.files.map(f => f[f.type].url).join(','),
-  select: (p) => p.select.name,
+  select: (p) => p.select ? p.select.name : p.select,
   formula: (p) => {
     const complexProp = COMPLEX_PROPERTY_VALUES[p.formula.type]
     return complexProp ? complexProp(p.formula) : p.formula[p.formula.type];
