@@ -104,6 +104,7 @@ module.exports = {
       ...content,
       block_id: blockId,
     });
+    await new Promise((resolve) => setTimeout(() => resolve(), 500)); // AVOID NOTION INTERNAL CONFLICT
   },
   getBlock: async (blockId) => {
     const reponse = await notion.blocks.retrieve({
