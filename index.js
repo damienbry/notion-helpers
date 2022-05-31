@@ -56,8 +56,8 @@ const navigateDeepBlocks = async (blockId, hasChildren, navigator) => {
   if (hasChildren) {
     const children = await getBlockChildren(blockId);
 
-    console.log(' 🤚🏿 children ', children)
     for (const child of children) {
+      await navigator(child);
       await navigateDeepBlocks(child.block_id, child.has_children, navigator);
     }
   }
