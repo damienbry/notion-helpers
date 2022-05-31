@@ -101,8 +101,8 @@ module.exports = {
   },
   updateBlock: async (blockId, content) => {
     const response = await notion.blocks.update({
-      block_id: blockId,
       ...content,
+      block_id: blockId,
     });
   },
   getBlock: async (blockId) => {
