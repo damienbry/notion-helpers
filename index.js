@@ -58,10 +58,10 @@ const navigateDeepBlocks = async (blockId, hasChildren, navigator) => {
 
     for (const child of children) {
       await navigator(child);
-      if (!child.block_id) {
-        console.log(' 🥴 child WITH BLOCK_ID UNDEFINED', child)
+      if (!child.id) {
+        console.log(" 🥴 child WITH ID UNDEFINED", child);
       }
-      await navigateDeepBlocks(child.block_id, child.has_children, navigator);
+      await navigateDeepBlocks(child.id, child.has_children, navigator);
     }
   }
 };
