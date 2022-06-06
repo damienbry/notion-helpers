@@ -52,8 +52,16 @@ const getBlockChildren = async (
   return children;
 };
 
-const navigateDeepBlocks = async (blockId, hasChildren, navigator) => {
+const navigateDeepBlocks = async (
+  blockId,
+  hasChildren,
+  navigator,
+  rateLimit
+) => {
   if (hasChildren) {
+    if (rateLimit && rateLimit > 0) {
+      await new Promise((resolve) => setTimeout(() => resolve(), rateLimit));
+    }
     const children = await getBlockChildren(blockId);
 
     for (const child of children) {
@@ -71,6 +79,7 @@ module.exports = {
     const pages = [];
     let cursor = undefined;
 
+    // eslint-disable-next-line no-constant-condition
     while (true) {
       const { results, next_cursor } = await notion.databases.query({
         database_id: databaseId,
@@ -92,10 +101,10 @@ module.exports = {
       },
       ...page,
     };
-    const response = await notion.pages.create(newPage);
+    await notion.pages.create(newPage);
   },
   updatePage: async (pageId, property) => {
-    const response = await notion.pages.update({
+    await notion.pages.update({
       page_id: pageId,
       properties: {
         ...property,
@@ -103,14 +112,14 @@ module.exports = {
     });
   },
   updateBlock: async (blockId, content) => {
-    const response = await notion.blocks.update({
+    await notion.blocks.update({
       ...content,
       block_id: blockId,
     });
     await new Promise((resolve) => setTimeout(() => resolve(), 1000)); // AVOID NOTION INTERNAL CONFLICT
   },
   getBlock: async (blockId) => {
-    const reponse = await notion.blocks.retrieve({
+    const response = await notion.blocks.retrieve({
       block_id: blockId,
     });
     return response;
