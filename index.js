@@ -94,6 +94,7 @@ module.exports = {
 
     return pages;
   },
+  getPage: async (pageId) => await notion.pages.retrieve({ page_id: pageId }),
   insertPage: async (page, databaseId) => {
     const newPage = {
       parent: {
